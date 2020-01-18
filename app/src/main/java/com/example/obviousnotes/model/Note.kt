@@ -1,4 +1,4 @@
-package com.example.obviousnotes.noteList.model
+package com.example.obviousnotes.model
 
 data class Note(
     val title: String,

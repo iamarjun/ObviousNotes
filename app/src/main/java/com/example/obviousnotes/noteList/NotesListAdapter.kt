@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.obviousnotes.R
-import com.example.obviousnotes.noteList.model.Note
+import com.example.obviousnotes.model.Note
 import kotlinx.android.synthetic.main.layout_note_item.view.*
 
 class NotesListAdapter : RecyclerView.Adapter<NotesListAdapter.NotesListViewHolder>() {
