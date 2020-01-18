@@ -7,11 +7,14 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavArgs
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.example.obviousnotes.MainActivity
 import com.example.obviousnotes.NotesViewModel
 import com.example.obviousnotes.R
+import com.example.obviousnotes.model.Note
 import com.example.obviousnotes.noteList.NotesListFragmentDirections
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -34,8 +37,18 @@ class NoteDetailsFragment : Fragment(R.layout.note_details_fragment) {
     private var fab: FloatingActionButton? = null
     private var bar: BottomAppBar? = null
 
+    private var note: Note? = null
+
     private lateinit var viewModel: NotesViewModel
     private lateinit var navController: NavController
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            note = it["Note"] as Note?
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -74,6 +87,12 @@ class NoteDetailsFragment : Fragment(R.layout.note_details_fragment) {
                 content?.text = it.content
                 timeStamp?.text = it.timeStamp
             })
+        }
+
+        note?.let {
+            title?.text = it.title
+            content?.text = it.content
+            timeStamp?.text = it.timeStamp
         }
 
     }

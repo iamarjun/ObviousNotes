@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -15,17 +16,20 @@ import com.example.obviousnotes.MainActivity
 import com.example.obviousnotes.NotesViewModel
 import com.example.obviousnotes.R
 import com.example.obviousnotes.SpacesItemDecoration
+import com.example.obviousnotes.createNote.CreateNoteFragmentDirections
+import com.example.obviousnotes.model.Note
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.notes_list_fragment.view.*
 
 
-class NotesListFragment : Fragment(R.layout.notes_list_fragment) {
+class NotesListFragment : Fragment(R.layout.notes_list_fragment),
+    NotesListAdapter.OnNoteClickListener {
 
     private var list: RecyclerView? = null
     private var emptyList: LinearLayout? = null
-    private val notesAdapter by lazy { NotesListAdapter() }
+    private val notesAdapter by lazy { NotesListAdapter(this) }
     private var fab: FloatingActionButton? = null
     private var bar: BottomAppBar? = null
 
@@ -79,6 +83,22 @@ class NotesListFragment : Fragment(R.layout.notes_list_fragment) {
             })
 
         }
+
+    }
+
+    override fun onNoteClick(note: Note) {
+
+        bar?.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+
+        val action = NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(note)
+        navController.navigate(action)
+
+        fab?.setImageDrawable(
+            ContextCompat.getDrawable(
+                context!!,
+                R.drawable.ic_close
+            )
+        )
 
     }
 

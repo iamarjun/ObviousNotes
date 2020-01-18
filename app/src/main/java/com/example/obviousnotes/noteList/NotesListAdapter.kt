@@ -8,7 +8,11 @@ import com.example.obviousnotes.R
 import com.example.obviousnotes.model.Note
 import kotlinx.android.synthetic.main.layout_note_item.view.*
 
-class NotesListAdapter : RecyclerView.Adapter<NotesListAdapter.NotesListViewHolder>() {
+class NotesListAdapter(private val listener: OnNoteClickListener) : RecyclerView.Adapter<NotesListAdapter.NotesListViewHolder>() {
+
+    interface OnNoteClickListener {
+        fun onNoteClick(note: Note)
+    }
 
     private var notesList: ArrayList<Note> = arrayListOf()
 
@@ -26,6 +30,10 @@ class NotesListAdapter : RecyclerView.Adapter<NotesListAdapter.NotesListViewHold
 
         holder.title.text = note.title
         holder.content.text = note.content
+
+        holder.view.setOnClickListener {
+            listener.onNoteClick(note)
+        }
     }
 
     fun addNotes(notes: List<Note>) {
