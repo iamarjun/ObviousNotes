@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/noteDetailsFragment"
-        android:name="com.example.obviousnotes.NoteDetailsFragment"
+        android:name="com.example.obviousnotes.noteDetails.NoteDetailsFragment"
         android:label="note_details_fragment"
         tools:layout="@layout/note_details_fragment" />
 

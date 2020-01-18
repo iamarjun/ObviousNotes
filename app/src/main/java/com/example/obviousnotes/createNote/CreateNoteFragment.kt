@@ -1,6 +1,5 @@
 package com.example.obviousnotes.createNote
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.obviousnotes.R

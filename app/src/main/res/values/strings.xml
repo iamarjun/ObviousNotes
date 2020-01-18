@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Obvious Notes</string>
+    <string name="notes_you_add_appear_here">Notes you add appear here!</string>
 </resources>
