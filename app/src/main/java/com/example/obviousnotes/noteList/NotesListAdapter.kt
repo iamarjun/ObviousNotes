@@ -28,8 +28,8 @@ class NotesListAdapter : RecyclerView.Adapter<NotesListAdapter.NotesListViewHold
         holder.content.text = note.content
     }
 
-    fun addNote(note: Note) {
-        notesList.add(note)
+    fun addNotes(notes: List<Note>) {
+        notesList.addAll(notes)
     }
 
     inner class NotesListViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
