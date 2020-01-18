@@ -2,6 +2,7 @@ package com.example.obviousnotes.noteList
 
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.notes_list_fragment.view.*
 class NotesListFragment : Fragment(R.layout.notes_list_fragment) {
 
     private var list: RecyclerView? = null
+    private var emptyList: LinearLayout? = null
     private val notesAdapter by lazy { NotesListAdapter() }
     private var fab: FloatingActionButton? = null
     private var bar: BottomAppBar? = null
@@ -47,6 +49,8 @@ class NotesListFragment : Fragment(R.layout.notes_list_fragment) {
             adapter = notesAdapter
         }
 
+        emptyList = view.empty_list
+
         bar = (activity as MainActivity).bar
         bar?.fabAnimationMode = BottomAppBar.FAB_ANIMATION_MODE_SLIDE
 
@@ -70,6 +74,7 @@ class NotesListFragment : Fragment(R.layout.notes_list_fragment) {
         activity?.let {
             viewModel = ViewModelProviders.of(it).get(NotesViewModel::class.java)
             viewModel.notesList.observe(this, Observer {
+                emptyList?.visibility = View.GONE
                 notesAdapter.addNotes(it)
             })
 
