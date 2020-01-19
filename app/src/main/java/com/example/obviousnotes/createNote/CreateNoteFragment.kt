@@ -26,8 +26,6 @@ import java.util.*
 
 class CreateNoteFragment : Fragment(R.layout.create_note_fragment) {
 
-    private var back: AppCompatImageView? = null
-    private var timeStamp: MaterialTextView? = null
     private var title: AppCompatEditText? = null
     private var content: AppCompatEditText? = null
     private var fab: FloatingActionButton? = null
@@ -42,8 +40,6 @@ class CreateNoteFragment : Fragment(R.layout.create_note_fragment) {
 
         navController = Navigation.findNavController(view)
 
-        back = view.back
-        timeStamp = view.timeStamp
         title = view.title
         title?.isEnabled = true
         content = view.content
