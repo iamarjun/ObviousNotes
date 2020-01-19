@@ -59,7 +59,7 @@ class CreateNoteFragment : Fragment(R.layout.create_note_fragment) {
             fab?.setImageDrawable(
                 ContextCompat.getDrawable(
                     context!!,
-                    R.drawable.ic_check
+                    R.drawable.ic_add
                 )
             )
 
