@@ -3,6 +3,7 @@ package com.example.obviousnotes.createNote
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
@@ -24,11 +25,6 @@ import java.util.*
 
 
 class CreateNoteFragment : Fragment(R.layout.create_note_fragment) {
-
-    companion object {
-        fun newInstance() =
-            CreateNoteFragment()
-    }
 
     private var back: AppCompatImageView? = null
     private var timeStamp: MaterialTextView? = null
@@ -57,6 +53,20 @@ class CreateNoteFragment : Fragment(R.layout.create_note_fragment) {
         bar?.fabAnimationMode = BottomAppBar.FAB_ANIMATION_MODE_SLIDE
 
         fab = (activity as MainActivity).fab
+
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            bar?.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+            fab?.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context!!,
+                    R.drawable.ic_check
+                )
+            )
+
+            navController.popBackStack()
+        }
+
+        callback.isEnabled = true
     }
 
 
@@ -82,6 +92,8 @@ class CreateNoteFragment : Fragment(R.layout.create_note_fragment) {
                             R.drawable.ic_close
                         )
                     )
+
+                    Toast.makeText(context, "Note created!", Toast.LENGTH_SHORT).show()
                 }
             }
         }

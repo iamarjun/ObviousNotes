@@ -10,13 +10,14 @@
         android:name="com.example.obviousnotes.noteList.NotesListFragment"
         android:label="notes_list_fragment"
         tools:layout="@layout/notes_list_fragment">
+
         <action
             android:id="@+id/action_notesListFragment_to_noteDetailsFragment"
             app:destination="@id/noteDetailsFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
-            app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="true">
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
 
             <argument
                 android:name="Note"
@@ -30,9 +31,8 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="true" />
+            app:popExitAnim="@anim/slide_out_right" />
+
     </fragment>
 
     <fragment
@@ -45,8 +45,7 @@
             app:destination="@id/noteDetailsFragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@+id/notesListFragment" />
     </fragment>
 
     <fragment

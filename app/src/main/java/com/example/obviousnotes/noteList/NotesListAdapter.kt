@@ -14,7 +14,7 @@ class NotesListAdapter(private val listener: OnNoteClickListener) : RecyclerView
         fun onNoteClick(note: Note)
     }
 
-    private var notesList: ArrayList<Note> = arrayListOf()
+    private var notesList: HashSet<Note> = hashSetOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesListViewHolder {
         val view =
@@ -26,7 +26,7 @@ class NotesListAdapter(private val listener: OnNoteClickListener) : RecyclerView
 
     override fun onBindViewHolder(holder: NotesListViewHolder, position: Int) {
 
-        val note = notesList[position]
+        val note = notesList.elementAt(position)
 
         holder.title.text = note.title
         holder.content.text = note.content

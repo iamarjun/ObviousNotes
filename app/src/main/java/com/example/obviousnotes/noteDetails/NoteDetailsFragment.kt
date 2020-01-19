@@ -2,6 +2,7 @@ package com.example.obviousnotes.noteDetails
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -25,12 +26,6 @@ import kotlinx.android.synthetic.main.note_details_fragment.view.*
 
 class NoteDetailsFragment : Fragment(R.layout.note_details_fragment) {
 
-    companion object {
-        fun newInstance() =
-            NoteDetailsFragment()
-    }
-
-    private var back: AppCompatImageView? = null
     private var timeStamp: MaterialTextView? = null
     private var title: MaterialTextView? = null
     private var content: MaterialTextView? = null
@@ -48,6 +43,7 @@ class NoteDetailsFragment : Fragment(R.layout.note_details_fragment) {
         arguments?.let {
             note = it["Note"] as Note?
         }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,7 +51,6 @@ class NoteDetailsFragment : Fragment(R.layout.note_details_fragment) {
 
         navController = Navigation.findNavController(view)
 
-        back = view.back
         timeStamp = view.timeStamp
         title = view.title
         content = view.content
@@ -75,6 +70,19 @@ class NoteDetailsFragment : Fragment(R.layout.note_details_fragment) {
             )
         }
 
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            fab?.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context!!,
+                    R.drawable.ic_add
+                )
+            )
+
+            navController.popBackStack()
+        }
+
+        callback.isEnabled = true
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -85,14 +93,14 @@ class NoteDetailsFragment : Fragment(R.layout.note_details_fragment) {
             viewModel.newNote.observe(it, Observer {
                 title?.text = it.title
                 content?.text = it.content
-                timeStamp?.text = it.timeStamp
+                timeStamp?.text = "Created on: ${it.timeStamp}"
             })
         }
 
         note?.let {
             title?.text = it.title
             content?.text = it.content
-            timeStamp?.text = it.timeStamp
+            timeStamp?.text = "Created on: ${it.timeStamp}"
         }
 
     }

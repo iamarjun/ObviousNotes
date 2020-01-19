@@ -33,11 +33,6 @@ class NotesListFragment : Fragment(R.layout.notes_list_fragment),
     private var fab: FloatingActionButton? = null
     private var bar: BottomAppBar? = null
 
-
-    companion object {
-        fun newInstance() = NotesListFragment()
-    }
-
     private lateinit var viewModel: NotesViewModel
     private lateinit var navController: NavController
 
