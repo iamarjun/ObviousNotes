@@ -40,14 +40,14 @@ This package contains the data class.
 * Material Design from Google
 
 ## Screenshots
-Screen which contains the notes created by the user.
-<img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090653.png" width="300" >
-<img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090851.png" width="300" >
+* Screen which contains the notes created by the user.
+* <img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090653.png" width="300" >
+* <img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090851.png" width="300" >
 
-Screen to create a note.
-<img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090728.png" width="300" >
+* Screen to create a note.
+* <img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090728.png" width="300" >
 
-Static screen to view the details of the note.
-<img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090736.png" width="300" >
+* Static screen to view the details of the note.
+* <img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090736.png" width="300" >
 
 
