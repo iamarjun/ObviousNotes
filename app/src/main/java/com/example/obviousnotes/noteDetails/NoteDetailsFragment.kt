@@ -59,10 +59,17 @@ class NoteDetailsFragment : Fragment(R.layout.note_details_fragment) {
         bar?.fabAnimationMode = BottomAppBar.FAB_ANIMATION_MODE_SCALE
 
         fab = (activity as MainActivity).fab
+        fab?.setImageDrawable(
+            ContextCompat.getDrawable(
+                context!!,
+                R.drawable.ic_close
+            )
+        )
+
         fab?.setOnClickListener {
             bar?.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
             navController.navigate(NoteDetailsFragmentDirections.actionNoteDetailsFragmentToNotesListFragment())
-            (it as FloatingActionButton).setImageDrawable(
+            fab?.setImageDrawable(
                 ContextCompat.getDrawable(
                     context!!,
                     R.drawable.ic_add

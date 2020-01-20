@@ -49,6 +49,12 @@ class CreateNoteFragment : Fragment(R.layout.create_note_fragment) {
         bar?.fabAnimationMode = BottomAppBar.FAB_ANIMATION_MODE_SLIDE
 
         fab = (activity as MainActivity).fab
+        fab?.setImageDrawable(
+            ContextCompat.getDrawable(
+                context!!,
+                R.drawable.ic_check
+            )
+        )
 
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             bar?.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
@@ -58,7 +64,6 @@ class CreateNoteFragment : Fragment(R.layout.create_note_fragment) {
                     R.drawable.ic_add
                 )
             )
-
             navController.popBackStack()
         }
 
@@ -82,7 +87,7 @@ class CreateNoteFragment : Fragment(R.layout.create_note_fragment) {
                     bar?.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
                     navController.navigate(CreateNoteFragmentDirections.actionCreateNoteFragmentToNoteDetailsFragment())
 
-                    (it as FloatingActionButton).setImageDrawable(
+                    fab?.setImageDrawable(
                         ContextCompat.getDrawable(
                             context!!,
                             R.drawable.ic_close
