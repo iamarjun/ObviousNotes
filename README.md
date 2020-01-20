@@ -1,6 +1,10 @@
 # ObviousNotes
 Obvious Take Home Exercise: Note Taking App. Have taken inspiration and design cues from google keep.
 
+## Technical Specs
+* Min API level 21
+* Targeted API level 29
+
 ## About Code Base
 * Entire code is written in kotlin.
 * Followed the MVVM architecture.
@@ -27,6 +31,10 @@ This package contains the data class.
 * MainActivity: Just used as a starting point.
 * NotesViewModel: ViewModel class shared between all the 3 fragment which handle all the opreations, like creation, fetching etc.
 * SpacesItemDecoration: Just a custom item decoration class for recyclerview for spaces.
+
+## Libraries Used
+* Navigation Component from Android JetPack
+* Material Design from Google
 
 ## Screenshots
 <img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090653.png" width="300" >
