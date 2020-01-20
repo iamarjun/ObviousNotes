@@ -2,8 +2,11 @@
 Obvious Take Home Exercise: Note Taking App. Have taken inspiration and design cues from google keep.
 
 ## Technical Specs
-* Min API level 21
-* Targeted API level 29
+* Min API level: 21
+* Targeted API level: 29
+* Gradle Version: 5.4.1
+* Android Gradle Plugin Version: 3.5.3
+* Kotlin version: 1.3.61
 
 ## About Code Base
 * Entire code is written in kotlin.
@@ -37,13 +40,14 @@ This package contains the data class.
 * Material Design from Google
 
 ## Screenshots
+Screen which contains the notes created by the user.
 <img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090653.png" width="300" >
+<img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090851.png" width="300" >
 
-
+Screen to create a note.
 <img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090728.png" width="300" >
 
-
+Static screen to view the details of the note.
 <img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090736.png" width="300" >
 
 
-<img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090851.png" width="300" >
