@@ -1,5 +1,6 @@
 # ObviousNotes
 Obvious Take Home Exercise: Note Taking App
+Has taken inspiration and design cues from google keep.
 
 ## About Code Base
 * Entire code is written in kotlin.
