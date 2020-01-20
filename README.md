@@ -29,26 +29,13 @@ This package contains the data class.
 * SpacesItemDecoration: Just a custom item decoration class for recyclerview for spaces.
 
 ## Screenshots
-<img src="https://github.com/iamarjun/Instagram/blob/master/screenshots/Screenshot_20180722-150610.jpg" width="300" >
+<img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090653.png" width="300" >
 
 
-<img src="https://github.com/iamarjun/Instagram/blob/master/screenshots/Screenshot_20180722-150622.jpg" width="300" >
+<img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090728.png" width="300" >
 
 
-<img src="https://github.com/iamarjun/Instagram/blob/master/screenshots/Screenshot_20180722-150417.jpg" width="300" >
+<img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090736.png" width="300" >
 
 
-<img src="https://github.com/iamarjun/Instagram/blob/master/screenshots/Screenshot_20180722-150501.jpg" width="300" >
-
-
-<img src="https://github.com/iamarjun/Instagram/blob/master/screenshots/Screenshot_20180722-150537.jpg" width="300" >
-
-
-<img src="https://github.com/iamarjun/Instagram/blob/master/screenshots/Screenshot_20180722-150546.jpg" width="300" >
-
-
-<img src="https://github.com/iamarjun/Instagram/blob/master/screenshots/Screenshot_20180722-150559.jpg" width="300" >
-
-
-<img src="https://github.com/iamarjun/Instagram/blob/master/screenshots/Screenshot_20180722-150551.jpg" width="300" >
-
+<img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090851.png" width="300" >
