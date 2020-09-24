@@ -1,4 +1,4 @@
-package com.example.obviousnotes
+package com.example.obviousnotes.util
 
 import android.graphics.Rect
 import android.view.View

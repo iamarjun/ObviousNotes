@@ -7,28 +7,17 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.obviousnotes.BaseFragment
 import com.example.obviousnotes.R
 import com.example.obviousnotes.databinding.NoteDetailsFragmentBinding
-import com.example.obviousnotes.model.Note
 import com.example.obviousnotes.util.viewBinding
 import com.google.android.material.bottomappbar.BottomAppBar
 
 class NoteDetailsFragment : BaseFragment() {
 
     private val binding: NoteDetailsFragmentBinding by viewBinding(NoteDetailsFragmentBinding::bind)
-
-    private var note: Note? = null
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            note = it["Note"] as Note?
-        }
-
-    }
+    private val args: NoteDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +30,12 @@ class NoteDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        with(args.note) {
+            binding.title.text = title
+            binding.content.text = content
+            binding.timeStamp.text = "Created on: $timeStamp"
+        }
+
         bar.fabAnimationMode = BottomAppBar.FAB_ANIMATION_MODE_SCALE
 
         fab.setImageDrawable(
@@ -52,7 +47,9 @@ class NoteDetailsFragment : BaseFragment() {
 
         fab.setOnClickListener {
             bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-            findNavController().navigate(NoteDetailsFragmentDirections.actionNoteDetailsFragmentToNotesListFragment())
+            val action =
+                NoteDetailsFragmentDirections.actionNoteDetailsFragmentToNotesListFragment()
+            findNavController().navigate(action)
             fab.setImageDrawable(
                 ContextCompat.getDrawable(
                     requireContext(),
@@ -73,25 +70,6 @@ class NoteDetailsFragment : BaseFragment() {
         }
 
         callback.isEnabled = true
-
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        activity?.let {
-            viewModel.newNote.observe(it, {
-                binding.title.text = it.title
-                binding.content.text = it.content
-                binding.timeStamp.text = "Created on: ${it.timeStamp}"
-            })
-        }
-
-        note?.let {
-            binding.title.text = it.title
-            binding.content.text = it.content
-            binding.timeStamp.text = "Created on: ${it.timeStamp}"
-        }
 
     }
 

@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.obviousnotes.BaseFragment
 import com.example.obviousnotes.R
-import com.example.obviousnotes.SpacesItemDecoration
 import com.example.obviousnotes.databinding.NotesListFragmentBinding
 import com.example.obviousnotes.model.Note
+import com.example.obviousnotes.util.SpacesItemDecoration
 import com.example.obviousnotes.util.viewBinding
 import com.google.android.material.bottomappbar.BottomAppBar
 
@@ -52,12 +52,6 @@ class NotesListFragment : BaseFragment(),
         fab.setOnClickListener {
             bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
             findNavController().navigate(NotesListFragmentDirections.actionNotesListFragmentToCreateNoteFragment())
-            fab.setImageDrawable(
-                ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_check
-                )
-            )
         }
 
     }

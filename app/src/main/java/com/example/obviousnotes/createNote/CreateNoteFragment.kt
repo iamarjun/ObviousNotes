@@ -47,12 +47,6 @@ class CreateNoteFragment : BaseFragment() {
 
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-            fab.setImageDrawable(
-                ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_add
-                )
-            )
             findNavController().popBackStack()
         }
 
@@ -69,23 +63,20 @@ class CreateNoteFragment : BaseFragment() {
 
                 if (validate()) {
 
-                    viewModel.addNote(
-                        Note(
-                            binding.title.text.toString(),
-                            binding.content.text.toString(),
-                            getCurrentTimeStamp()
-                        )
+                    val note = Note(
+                        binding.title.text.toString(),
+                        binding.content.text.toString(),
+                        getCurrentTimeStamp()
                     )
+
+                    viewModel.addNote(note)
 
                     bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                    findNavController().navigate(CreateNoteFragmentDirections.actionCreateNoteFragmentToNoteDetailsFragment())
-
-                    fab.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            requireContext(),
-                            R.drawable.ic_close
+                    val action =
+                        CreateNoteFragmentDirections.actionCreateNoteFragmentToNoteDetailsFragment(
+                            note
                         )
-                    )
+                    findNavController().navigate(action)
 
                     Toast.makeText(context, "Note created!", Toast.LENGTH_SHORT).show()
                 }
