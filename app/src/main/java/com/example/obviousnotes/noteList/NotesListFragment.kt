@@ -15,13 +15,26 @@ import com.example.obviousnotes.model.Note
 import com.example.obviousnotes.util.SpacesItemDecoration
 import com.example.obviousnotes.util.viewBinding
 import com.google.android.material.bottomappbar.BottomAppBar
+import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
-class NotesListFragment : BaseFragment(),
-    NotesListAdapter.OnNoteClickListener {
-
+@AndroidEntryPoint
+class NotesListFragment : BaseFragment() {
     private val binding: NotesListFragmentBinding by viewBinding(NotesListFragmentBinding::bind)
 
-    private val notesAdapter by lazy { NotesListAdapter(this) }
+    private val notesAdapter by lazy {
+        NotesAdapter(object : NotesAdapter.Interaction {
+            override fun onItemSelected(position: Int, item: Note) {
+                Timber.d("$item at $position")
+                bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+
+                val action =
+                    NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(item)
+                findNavController().navigate(action)
+            }
+
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,35 +67,10 @@ class NotesListFragment : BaseFragment(),
             findNavController().navigate(NotesListFragmentDirections.actionNotesListFragmentToCreateNoteFragment())
         }
 
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        activity?.let {
-            viewModel.notesList.observe(viewLifecycleOwner, {
-                binding.emptyList.visibility = View.GONE
-                notesAdapter.addNotes(it)
-            })
-
-        }
+        viewModel.notesList.observe(viewLifecycleOwner, {
+            binding.emptyList.visibility = View.GONE
+            notesAdapter.submitList(it)
+        })
 
     }
-
-    override fun onNoteClick(note: Note) {
-
-        bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-
-        val action = NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(note)
-        findNavController().navigate(action)
-
-        fab.setImageDrawable(
-            ContextCompat.getDrawable(
-                requireContext(),
-                R.drawable.ic_close
-            )
-        )
-
-    }
-
 }

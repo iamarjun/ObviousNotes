@@ -13,7 +13,9 @@ import com.example.obviousnotes.R
 import com.example.obviousnotes.databinding.NoteDetailsFragmentBinding
 import com.example.obviousnotes.util.viewBinding
 import com.google.android.material.bottomappbar.BottomAppBar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NoteDetailsFragment : BaseFragment() {
 
     private val binding: NoteDetailsFragmentBinding by viewBinding(NoteDetailsFragmentBinding::bind)

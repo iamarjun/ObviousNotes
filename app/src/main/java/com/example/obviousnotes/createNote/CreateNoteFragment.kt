@@ -14,9 +14,11 @@ import com.example.obviousnotes.databinding.CreateNoteFragmentBinding
 import com.example.obviousnotes.model.Note
 import com.example.obviousnotes.util.viewBinding
 import com.google.android.material.bottomappbar.BottomAppBar
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class CreateNoteFragment : BaseFragment() {
 
     private val binding: CreateNoteFragmentBinding by viewBinding(CreateNoteFragmentBinding::bind)
@@ -64,9 +66,9 @@ class CreateNoteFragment : BaseFragment() {
                 if (validate()) {
 
                     val note = Note(
-                        binding.title.text.toString(),
-                        binding.content.text.toString(),
-                        getCurrentTimeStamp()
+                        title = binding.title.text.toString(),
+                        content = binding.content.text.toString(),
+                        timeStamp = getCurrentTimeStamp()
                     )
 
                     viewModel.addNote(note)
