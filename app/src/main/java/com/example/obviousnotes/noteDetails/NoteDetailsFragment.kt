@@ -1,41 +1,25 @@
 package com.example.obviousnotes.noteDetails
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.addCallback
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavArgs
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.navArgs
-import com.example.obviousnotes.MainActivity
-import com.example.obviousnotes.NotesViewModel
+import androidx.navigation.fragment.findNavController
+import com.example.obviousnotes.BaseFragment
 import com.example.obviousnotes.R
+import com.example.obviousnotes.databinding.NoteDetailsFragmentBinding
 import com.example.obviousnotes.model.Note
-import com.example.obviousnotes.noteList.NotesListFragmentDirections
+import com.example.obviousnotes.util.viewBinding
 import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.textview.MaterialTextView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.note_details_fragment.view.*
 
+class NoteDetailsFragment : BaseFragment() {
 
-class NoteDetailsFragment : Fragment(R.layout.note_details_fragment) {
-
-    private var timeStamp: MaterialTextView? = null
-    private var title: MaterialTextView? = null
-    private var content: MaterialTextView? = null
-    private var fab: FloatingActionButton? = null
-    private var bar: BottomAppBar? = null
+    private val binding: NoteDetailsFragmentBinding by viewBinding(NoteDetailsFragmentBinding::bind)
 
     private var note: Note? = null
 
-    private lateinit var viewModel: NotesViewModel
-    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,46 +30,46 @@ class NoteDetailsFragment : Fragment(R.layout.note_details_fragment) {
 
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.note_details_fragment, container, false)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController = Navigation.findNavController(view)
+        bar.fabAnimationMode = BottomAppBar.FAB_ANIMATION_MODE_SCALE
 
-        timeStamp = view.timeStamp
-        title = view.title
-        content = view.content
-
-        bar = (activity as MainActivity).bar
-        bar?.fabAnimationMode = BottomAppBar.FAB_ANIMATION_MODE_SCALE
-
-        fab = (activity as MainActivity).fab
-        fab?.setImageDrawable(
+        fab.setImageDrawable(
             ContextCompat.getDrawable(
-                context!!,
+                requireContext(),
                 R.drawable.ic_close
             )
         )
 
-        fab?.setOnClickListener {
-            bar?.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-            navController.navigate(NoteDetailsFragmentDirections.actionNoteDetailsFragmentToNotesListFragment())
-            fab?.setImageDrawable(
+        fab.setOnClickListener {
+            bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+            findNavController().navigate(NoteDetailsFragmentDirections.actionNoteDetailsFragmentToNotesListFragment())
+            fab.setImageDrawable(
                 ContextCompat.getDrawable(
-                    context!!,
+                    requireContext(),
                     R.drawable.ic_add
                 )
             )
         }
 
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
-            fab?.setImageDrawable(
+            fab.setImageDrawable(
                 ContextCompat.getDrawable(
-                    context!!,
+                    requireContext(),
                     R.drawable.ic_add
                 )
             )
 
-            navController.popBackStack()
+            findNavController().popBackStack()
         }
 
         callback.isEnabled = true
@@ -96,18 +80,17 @@ class NoteDetailsFragment : Fragment(R.layout.note_details_fragment) {
         super.onActivityCreated(savedInstanceState)
 
         activity?.let {
-            viewModel = ViewModelProviders.of(it).get(NotesViewModel::class.java)
-            viewModel.newNote.observe(it, Observer {
-                title?.text = it.title
-                content?.text = it.content
-                timeStamp?.text = "Created on: ${it.timeStamp}"
+            viewModel.newNote.observe(it, {
+                binding.title.text = it.title
+                binding.content.text = it.content
+                binding.timeStamp.text = "Created on: ${it.timeStamp}"
             })
         }
 
         note?.let {
-            title?.text = it.title
-            content?.text = it.content
-            timeStamp?.text = "Created on: ${it.timeStamp}"
+            binding.title.text = it.title
+            binding.content.text = it.content
+            binding.timeStamp.text = "Created on: ${it.timeStamp}"
         }
 
     }
