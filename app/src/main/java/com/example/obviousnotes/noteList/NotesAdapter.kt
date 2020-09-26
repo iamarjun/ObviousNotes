@@ -69,6 +69,11 @@ class NotesAdapter(private val interaction: Interaction? = null) :
                     interaction?.onItemSelected(adapterPosition, item)
                 }
 
+                root.setOnLongClickListener {
+                    interaction?.onItemLongPress(adapterPosition, item)
+                    true
+                }
+
                 title.text = item.title
                 content.text = item.content
             }
@@ -77,6 +82,7 @@ class NotesAdapter(private val interaction: Interaction? = null) :
 
     interface Interaction {
         fun onItemSelected(position: Int, item: Note)
+        fun onItemLongPress(position: Int, item: Note)
     }
 }
 

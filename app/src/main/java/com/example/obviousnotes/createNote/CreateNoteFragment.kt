@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.obviousnotes.BaseFragment
 import com.example.obviousnotes.R
 import com.example.obviousnotes.databinding.CreateNoteFragmentBinding
@@ -21,7 +22,7 @@ import java.util.*
 class CreateNoteFragment : BaseFragment() {
 
     private val binding: CreateNoteFragmentBinding by viewBinding(CreateNoteFragmentBinding::bind)
-    private var mView: View? = null
+    private val args: CreateNoteFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +40,10 @@ class CreateNoteFragment : BaseFragment() {
 
         bar.fabAnimationMode = BottomAppBar.FAB_ANIMATION_MODE_SLIDE
 
+        args.note?.let {
+            binding.title.setText(it.title)
+            binding.content.setText(it.content)
+        }
 
         fab.setImageDrawable(
             ContextCompat.getDrawable(
@@ -51,22 +56,27 @@ class CreateNoteFragment : BaseFragment() {
 
             if (validate()) {
 
-                val note = Note(
-                    title = binding.title.text.toString(),
-                    content = binding.content.text.toString(),
-                    timeStamp = getCurrentTimeStamp()
-                )
+                args.note?.let {
+                    it.apply {
+                        title = binding.title.text.toString()
+                        content = binding.content.text.toString()
+                        timeStamp = getCurrentTimeStamp()
+                    }
+                    viewModel.updateNote(it)
+                } ?: run {
+                    val note = Note(
+                        title = binding.title.text.toString(),
+                        content = binding.content.text.toString(),
+                        timeStamp = getCurrentTimeStamp()
+                    )
 
-                viewModel.addNote(note)
+                    viewModel.addNote(note)
+                }
 
                 bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
                 val action =
-                    CreateNoteFragmentDirections.actionCreateNoteFragmentToNoteDetailsFragment(
-                        note
-                    )
+                    CreateNoteFragmentDirections.actionCreateNoteFragmentToNotesListFragment()
                 findNavController().navigate(action)
-
-                Toast.makeText(context, "Note created!", Toast.LENGTH_SHORT).show()
             }
         }
     }

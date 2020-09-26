@@ -1,5 +1,6 @@
 package com.example.obviousnotes.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.obviousnotes.model.Note
 
@@ -16,5 +17,5 @@ interface NotesDao {
     suspend fun delete(note: Note)
 
     @Query("SELECT * FROM note")
-    suspend fun getAllNotes(): List<Note>
+    fun getAllNotes(): LiveData<List<Note>>
 }

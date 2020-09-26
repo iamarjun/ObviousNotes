@@ -30,8 +30,13 @@ class NotesListFragment : BaseFragment() {
                 bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
 
                 val action =
-                    NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(item)
+                    NotesListFragmentDirections.actionNotesListFragmentToCreateNoteFragment(item)
                 findNavController().navigate(action)
+            }
+
+            override fun onItemLongPress(position: Int, item: Note) {
+                Timber.d("$item at $position deleted")
+                viewModel.deleteNote(item)
             }
 
         })
@@ -69,7 +74,11 @@ class NotesListFragment : BaseFragment() {
 
         fab.setOnClickListener {
             bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-            findNavController().navigate(NotesListFragmentDirections.actionNotesListFragmentToCreateNoteFragment())
+            findNavController().navigate(
+                NotesListFragmentDirections.actionNotesListFragmentToCreateNoteFragment(
+                    null
+                )
+            )
         }
 
         viewModel.notesList.observe(viewLifecycleOwner, {
