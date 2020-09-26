@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -59,19 +58,6 @@ class NoteDetailsFragment : BaseFragment() {
                 )
             )
         }
-
-        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
-            fab.setImageDrawable(
-                ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_add
-                )
-            )
-
-            findNavController().popBackStack()
-        }
-
-        callback.isEnabled = true
 
     }
 

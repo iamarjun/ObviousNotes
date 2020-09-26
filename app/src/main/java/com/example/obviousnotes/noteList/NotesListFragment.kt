@@ -58,6 +58,7 @@ class NotesListFragment : BaseFragment() {
         }
 
         bar.fabAnimationMode = BottomAppBar.FAB_ANIMATION_MODE_SLIDE
+        bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
 
         fab.setImageDrawable(
             ContextCompat.getDrawable(
@@ -72,7 +73,7 @@ class NotesListFragment : BaseFragment() {
         }
 
         viewModel.notesList.observe(viewLifecycleOwner, {
-            binding.emptyList.visibility = View.GONE
+            binding.emptyList.isVisible = it.isEmpty()
             notesAdapter.submitList(it)
         })
 
