@@ -3,10 +3,10 @@ Obvious Take Home Exercise: Note Taking App. Have taken inspiration and design c
 
 ## Technical Specs
 * Min API level: 21
-* Targeted API level: 29
-* Gradle Version: 5.4.1
-* Android Gradle Plugin Version: 3.5.3
-* Kotlin version: 1.3.61
+* Targeted API level: 30
+* Gradle Version: 6.1.1
+* Android Gradle Plugin Version: 4.0.1
+* Kotlin version: 1.4.10
 
 ## About Code Base
 * Entire code is written in kotlin.
@@ -17,11 +17,11 @@ Obvious Take Home Exercise: Note Taking App. Have taken inspiration and design c
 ## Code Hierarchy
 * I have gone with package per feature, so for every feature resides in their own package along with their dependant classes.
 
+### login
+* LoginFragment: Let's the user login via google.
+
 ### createnote
 * CreateNoteFragment: Let's the user create a note.
-
-### noteDetails
-* NoteDetailsFragment: Static screen which shows the note that was created.
 
 ### model
 This package contains the data class.
@@ -46,8 +46,3 @@ This package contains the data class.
 
 * Screen to create a note.
 <img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090728.png" width="300" >
-
-* Static screen to view the details of the note.
-<img src="https://github.com/iamarjun/ObviousNotes/blob/master/screenshots/Screenshot_20200120-090736.png" width="300" >
-
-
