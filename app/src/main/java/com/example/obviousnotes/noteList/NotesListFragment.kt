@@ -86,5 +86,9 @@ class NotesListFragment : BaseFragment() {
             notesAdapter.submitList(it)
         })
 
+        bar.setNavigationOnClickListener {
+            logout(this@NotesListFragment)
+        }
+
     }
 }

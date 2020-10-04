@@ -79,6 +79,10 @@ class CreateNoteFragment : BaseFragment() {
                 findNavController().navigate(action)
             }
         }
+
+        bar.setNavigationOnClickListener {
+            logout(this@CreateNoteFragment)
+        }
     }
 
     private fun getCurrentTimeStamp(): String {

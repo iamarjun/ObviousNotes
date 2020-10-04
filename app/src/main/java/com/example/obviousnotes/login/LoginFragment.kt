@@ -13,8 +13,6 @@ import com.example.obviousnotes.databinding.FragmentLoginBinding
 import com.example.obviousnotes.util.viewBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
@@ -24,18 +22,6 @@ import timber.log.Timber
 class LoginFragment : BaseFragment() {
 
     private val binding: FragmentLoginBinding by viewBinding(FragmentLoginBinding::bind)
-
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
-
-        mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

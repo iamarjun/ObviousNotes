@@ -29,7 +29,8 @@
             android:layout_height="?actionBarSize"
             android:layout_gravity="bottom"
             app:hideOnScroll="true"
-            app:layout_scrollFlags="scroll|enterAlways" />
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:navigationIcon="@drawable/ic_logout" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
