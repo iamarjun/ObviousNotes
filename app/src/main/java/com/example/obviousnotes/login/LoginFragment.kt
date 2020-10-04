@@ -60,6 +60,7 @@ class LoginFragment : BaseFragment() {
     private fun updateUI(account: GoogleSignInAccount?) {
 
         account?.let {
+            viewModel.addUser(it)
             val action = LoginFragmentDirections.actionLoginFragmentToNotesListFragment()
             findNavController().navigate(action)
         }

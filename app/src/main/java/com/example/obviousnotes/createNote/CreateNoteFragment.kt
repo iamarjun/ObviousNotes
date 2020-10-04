@@ -67,7 +67,8 @@ class CreateNoteFragment : BaseFragment() {
                     val note = Note(
                         title = binding.title.text.toString(),
                         content = binding.content.text.toString(),
-                        timeStamp = getCurrentTimeStamp()
+                        timeStamp = getCurrentTimeStamp(),
+                        userId = viewModel.currentUser.id
                     )
 
                     viewModel.addNote(note)

@@ -3,6 +3,7 @@ package com.example.obviousnotes.di
 import android.content.Context
 import com.example.obviousnotes.db.NotesDao
 import com.example.obviousnotes.db.NotesDatabase
+import com.example.obviousnotes.db.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,4 +20,7 @@ object DatabaseModule {
 
     @Provides
     fun provideDao(database: NotesDatabase): NotesDao = database.dao
+
+    @Provides
+    fun provideUserDao(database: NotesDatabase): UserDao = database.userDao
 }
