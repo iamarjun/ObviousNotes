@@ -46,7 +46,7 @@
         <action
             android:id="@+id/action_createNoteFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/createNoteFragment"
+            app:popUpTo="@id/notesListFragment"
             app:popUpToInclusive="true" />
 
     </fragment>
