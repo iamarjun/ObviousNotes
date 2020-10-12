@@ -2,13 +2,10 @@ package com.example.obviousnotes.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.obviousnotes.BaseFragment
-import com.example.obviousnotes.R
 import com.example.obviousnotes.databinding.FragmentLoginBinding
 import com.example.obviousnotes.util.viewBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -22,14 +19,6 @@ import timber.log.Timber
 class LoginFragment : BaseFragment() {
 
     private val binding: FragmentLoginBinding by viewBinding(FragmentLoginBinding::bind)
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

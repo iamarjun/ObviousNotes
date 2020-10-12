@@ -1,9 +1,7 @@
 package com.example.obviousnotes.createNote
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
@@ -23,14 +21,6 @@ class CreateNoteFragment : BaseFragment() {
 
     private val binding: CreateNoteFragmentBinding by viewBinding(CreateNoteFragmentBinding::bind)
     private val args: CreateNoteFragmentArgs by navArgs()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.create_note_fragment, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
